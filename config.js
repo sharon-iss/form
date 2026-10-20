@@ -4,5 +4,5 @@
 window.GRACE_CONFIG = {
   scriptURL:
     "https://script.google.com/macros/s/AKfycbxtIP-qGQ093KOTJxsfmVgryMnpeZsA0ziqSCicVmhxRC-Cs7SVFlZu95O7aGMbUFEz/exec",
-  recaptchaSiteKey: "YOUR_RECAPTCHA_SITE_KEY",
+  recaptchaSiteKey: "6Lf2vfctAAAAAAlHauM90FGonrVt1qdBc-jmKu9n",
 };
