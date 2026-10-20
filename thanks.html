@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grace — Enquiry sent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Sora:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .thanks {
+        min-height: 70vh;
+        display: grid;
+        align-content: center;
+        gap: 1rem;
+        animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .thanks p {
+        margin: 0;
+        max-width: 36ch;
+        color: var(--ink-soft);
+        font-weight: 300;
+        font-size: 1.05rem;
+      }
+
+      .back {
+        display: inline-flex;
+        margin-top: 1.25rem;
+        color: var(--jade-deep);
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(31, 77, 66, 0.35);
+        padding-bottom: 0.15rem;
+        width: fit-content;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .back:hover {
+        color: var(--jade);
+        border-color: var(--jade);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grain"></div>
+    </div>
+
+    <main class="page thanks">
+      <p class="brand">Grace</p>
+      <h1 class="headline">Enquiry sent</h1>
+      <p>Thank you. We have received your message and will reply by email soon.</p>
+      <a class="back" href="index.html">← Back to the form</a>
+    </main>
+  </body>
+</html>

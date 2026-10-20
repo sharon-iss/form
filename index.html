@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grace — Enquiry</title>
+    <meta
+      name="description"
+      content="Send an enquiry to Grace. We will reply to your message by email."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grain"></div>
+    </div>
+
+    <main class="page">
+      <header class="intro">
+        <p class="brand">Grace</p>
+        <h1 class="headline">Tell us how we can help</h1>
+        <p class="lede">
+          Share a few details and we will get back to you by email.
+        </p>
+      </header>
+
+      <form id="enquiry-form" class="enquiry-form" novalidate>
+        <input
+          type="text"
+          name="honey"
+          class="honey"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+        />
+
+        <div class="field-row">
+          <label class="field">
+            <span class="label">Full name</span>
+            <input
+              type="text"
+              name="name"
+              autocomplete="name"
+              required
+              placeholder="Alex Tan"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Email</span>
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+            />
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label">Phone <span class="optional">(optional)</span></span>
+          <input
+            type="tel"
+            name="phone"
+            autocomplete="tel"
+            placeholder="+65 9123 4567"
+          />
+        </label>
+
+        <label class="field">
+          <span class="label">Your enquiry</span>
+          <textarea
+            name="message"
+            rows="6"
+            required
+            placeholder="What would you like to ask about?"
+          ></textarea>
+        </label>
+
+        <div class="field captcha-field">
+          <span class="label">Verification</span>
+          <div id="recaptcha-container"></div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="submit" id="submit-btn">
+            <span class="submit-label">Send enquiry</span>
+            <span class="submit-arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="hint" id="form-hint">Subject line: enquiry</p>
+        </div>
+
+        <p class="status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+    <script src="script.js"></script>
+  </body>
+</html>
