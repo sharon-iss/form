@@ -8,11 +8,12 @@
   const config = window.GRACE_CONFIG || {};
   const scriptURL = config.scriptURL || "";
   const siteKey = config.recaptchaSiteKey || "";
+  const captchaEnabled = config.enableCaptcha === true;
 
   const isScriptConfigured =
     scriptURL && !scriptURL.includes("YOUR_GOOGLE_APPS_SCRIPT");
   const isCaptchaConfigured =
-    siteKey && !siteKey.includes("YOUR_RECAPTCHA_SITE_KEY");
+    captchaEnabled && siteKey && !siteKey.includes("YOUR_RECAPTCHA_SITE_KEY");
 
   let captchaWidgetId = null;
 
@@ -23,6 +24,17 @@
       theme: "light",
     });
   };
+
+  if (isCaptchaConfigured) {
+    const captchaField = document.getElementById("captcha-field");
+    if (captchaField) captchaField.hidden = false;
+    const api = document.createElement("script");
+    api.src =
+      "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
+    api.async = true;
+    api.defer = true;
+    document.body.appendChild(api);
+  }
 
   function setStatus(message, type) {
     statusEl.textContent = message;
@@ -62,23 +74,9 @@
       return;
     }
 
-    if (!isCaptchaConfigured) {
-      setStatus(
-        "Add your Google reCAPTCHA site key in config.js before sending.",
-        "error"
-      );
-      return;
-    }
-
     if (!form.checkValidity()) {
       setStatus("Please complete the required fields.", "error");
       form.reportValidity();
-      return;
-    }
-
-    const captchaToken = getCaptchaToken();
-    if (!captchaToken) {
-      setStatus("Please complete the captcha.", "error");
       return;
     }
 
@@ -88,8 +86,16 @@
       phone: form.phone.value.trim(),
       message: form.message.value.trim(),
       honey: form.honey.value,
-      captchaToken: captchaToken,
     };
+
+    if (isCaptchaConfigured) {
+      const captchaToken = getCaptchaToken();
+      if (!captchaToken) {
+        setStatus("Please complete the captcha.", "error");
+        return;
+      }
+      payload.captchaToken = captchaToken;
+    }
 
     submitBtn.disabled = true;
     submitLabel.textContent = "Sending…";

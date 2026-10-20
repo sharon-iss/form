@@ -2,7 +2,7 @@
  * Google Apps Script — paste this into script.google.com
  *
  * 1. Set RECIPIENT_EMAIL to the address that should receive enquiries.
- * 2. Set RECAPTCHA_SECRET from https://www.google.com/recaptcha/admin
+ * 2. Set CAPTCHA_ENABLED to true and RECAPTCHA_SECRET when captcha is on.
  * 3. Deploy → New deployment → Web app
  *    - Execute as: Me
  *    - Who has access: Anyone
@@ -13,6 +13,7 @@
  */
 
 const RECIPIENT_EMAIL = "destination@example.com";
+const CAPTCHA_ENABLED = false;
 const RECAPTCHA_SECRET = "YOUR_RECAPTCHA_SECRET_KEY";
 
 function doPost(e) {
@@ -24,9 +25,11 @@ function doPost(e) {
       return json_({ ok: true });
     }
 
-    const captchaToken = String(data.captchaToken || "").trim();
-    if (!verifyCaptcha_(captchaToken)) {
-      return json_({ ok: false, error: "Captcha verification failed." });
+    if (CAPTCHA_ENABLED) {
+      const captchaToken = String(data.captchaToken || "").trim();
+      if (!verifyCaptcha_(captchaToken)) {
+        return json_({ ok: false, error: "Captcha verification failed." });
+      }
     }
 
     const name = String(data.name || "").trim();

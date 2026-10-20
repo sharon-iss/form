@@ -86,7 +86,7 @@
           ></textarea>
         </label>
 
-        <div class="field captcha-field">
+        <div class="field captcha-field" id="captcha-field" hidden>
           <span class="label">Verification</span>
           <div id="recaptcha-container"></div>
         </div>
@@ -104,7 +104,6 @@
     </main>
 
     <script src="config.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
     <script src="script.js"></script>
   </body>
 </html>
